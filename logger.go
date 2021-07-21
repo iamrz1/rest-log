@@ -11,16 +11,17 @@ const (
 )
 
 type Logger interface {
-	Infoln(fn, tid string, msg string)
-	Infof(fn, tid string, format string, args ...interface{})
-	Warnln(fn, tid string, msg string)
-	Errorln(fn, tid string, msg string)
-	Errorf(fn, tid string, format string, args ...interface{})
+	Info(fn, tid string, msg string)
+	InfoPretty(fn, tid string, msg string)
+	Warn(fn, tid string, msg string)
+	WarnPretty(fn, tid string, msg string)
+	Error(fn, tid string, msg string)
+	ErrorPretty(fn, tid string, msg string)
 	Print(level LogLevel, fn, tid string, msg string)
 }
 
 func New(verbose bool) Logger {
 	logger := NewZeroLevelLogger(verbose)
-	logger.Infoln("GetDefaultStructLogger", "init", "Running in verbose mode")
+	logger.Info("GetDefaultStructLogger", "init", "Running in verbose mode")
 	return logger
 }
