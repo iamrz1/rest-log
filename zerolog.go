@@ -14,12 +14,12 @@ type zeroLevelLogger struct {
 	verbose      bool
 }
 
-func NewZeroLevelLogger(verbose bool) Logger {
+func NewZeroLevelLogger(service string, verbose bool) Logger {
 	zerolog.TimeFieldFormat = zerolog.TimeFormatUnixMs
-	stdLog := zerolog.New(os.Stdout).With().CallerWithSkipFrameCount(3).Str("service", "auth").Logger()
-	errLog := zerolog.New(os.Stderr).With().CallerWithSkipFrameCount(3).Stack().Str("service", "auth").Logger()
-	prettyStdLog := log.With().CallerWithSkipFrameCount(3).Str("service", "auth").Logger().Output(zerolog.ConsoleWriter{Out: os.Stdout})
-	prettyErrorLog := log.With().CallerWithSkipFrameCount(3).Str("service", "auth").Logger().Output(zerolog.ConsoleWriter{Out: os.Stdout})
+	stdLog := zerolog.New(os.Stdout).With().CallerWithSkipFrameCount(3).Str("service", service).Logger()
+	errLog := zerolog.New(os.Stderr).With().CallerWithSkipFrameCount(3).Stack().Str("service", service).Logger()
+	prettyStdLog := log.With().CallerWithSkipFrameCount(3).Str("service", service).Logger().Output(zerolog.ConsoleWriter{Out: os.Stdout})
+	prettyErrorLog := log.With().CallerWithSkipFrameCount(3).Str("service", service).Logger().Output(zerolog.ConsoleWriter{Out: os.Stdout})
 
 	return &zeroLevelLogger{
 		StdLog:       stdLog,

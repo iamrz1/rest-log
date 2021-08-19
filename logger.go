@@ -20,8 +20,8 @@ type Logger interface {
 	Print(level LogLevel, fn, tid string, msg string)
 }
 
-func New(verbose bool) Logger {
-	logger := NewZeroLevelLogger(verbose)
+func New(service string, verbose bool) Logger {
+	logger := NewZeroLevelLogger(service,verbose)
 	logger.Info("GetDefaultStructLogger", "init", "Running in verbose mode")
 	return logger
 }
